@@ -61,7 +61,7 @@ const posts = [
 const container = document.getElementById("container");
 
 printPostData();
-
+likeClickHandler();
 
 function printPostData() {
     for(let i in posts) {
@@ -71,6 +71,7 @@ function printPostData() {
         let date = post.created;
         date = date.split("-").reverse().join("-");
 
+        // if the image === null then print name and surname capital letter
         let imgName = post.author.name;
         let altImg = onlyCapitalLetters (imgName);
 
@@ -109,6 +110,22 @@ function printPostData() {
         `
     }
 
+}
+
+function likeClickHandler(){
+    for (let i in posts) {
+        const post = posts[i];
+        for (let i = 0; i < posts.length; i++) {
+            let like = document.querySelector(`[data-postid="${post.id}"]`);
+
+            like.addEventListener("click", function() {
+                like.classList.add('like-button--liked');
+            })
+            like.removeEventListener("click",function(){
+                like.classList.add('like-button--liked');
+            })
+        }
+    }
 }
 
 function onlyCapitalLetters (str) { 
