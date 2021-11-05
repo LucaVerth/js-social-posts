@@ -66,6 +66,10 @@ function printPostData() {
     for(let i in posts) {
         const post = posts[i];
 
+        //get ISO date to IT local format
+        let date = post.created;
+        date = date.split("-").reverse().join("-");
+
         container.innerHTML += 
         `
         <div class="post">
@@ -76,7 +80,7 @@ function printPostData() {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>
-                    <div class="post-meta__time">${post.created}</div>
+                    <div class="post-meta__time">${date}</div>
                 </div>                    
             </div>
         </div>
