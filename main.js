@@ -62,13 +62,17 @@ const container = document.getElementById("container");
 
 printPostData();
 
+
 function printPostData() {
     for(let i in posts) {
         const post = posts[i];
 
-        //get ISO date to IT local format
+        //get ISO date to IT local
         let date = post.created;
         date = date.split("-").reverse().join("-");
+
+        let imgName = post.author.name;
+        let altImg = onlyCapitalLetters (imgName);
 
         container.innerHTML += 
         `
@@ -76,10 +80,10 @@ function printPostData() {
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${post.author.image}" alt="Phil Mangione">                    
+                    <img class="profile-pic" src="${post.author.image}" alt="${altImg}">                    
                 </div>
                 <div class="post-meta__data">
-                    <div class="post-meta__author">${post.author.name}</div>
+                    <div class="post-meta__author">${imgName}</div>
                     <div class="post-meta__time">${date}</div>
                 </div>                    
             </div>
@@ -106,3 +110,18 @@ function printPostData() {
     }
 
 }
+
+function onlyCapitalLetters (str) { 
+    let newStr = "";
+  
+    for (let i = 0; i < str.length; i++) {
+        if (str[i].match(/[A-Z]/)) {
+            newStr += str[i];
+        }
+     }
+     return newStr;
+}
+
+
+
+
